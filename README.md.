@@ -1,0 +1,177 @@
+Adversarial Test of Multiplicative vs. Additive Neural Integration
+
+Overview
+
+This repository contains a complete, pre-registered adversarial test of a structural hypothesis in neural dynamics: whether the temporal rate of neural integration is better described by a multiplicative interaction between external input and internal coherence, or by a canonical additive drift process.
+
+The study uses human fMRI data and implements an explicit comparison between:
+
+Multiplicative integration models (external drive × internal coherence)
+
+Additive drift models (external + internal drivers)
+
+Phase-randomized null controls to assess robustness
+
+
+The repository serves as a fully archival scientific object, containing:
+
+A fixed computational environment
+
+Executable analysis code
+
+A complete academic paper
+
+Explicit falsification criteria and outcomes
+
+
+
+---
+
+Scientific Scope and Claims
+
+What This Repository Tests
+
+A single, well-defined structural hypothesis about neural integration dynamics
+
+Tested in the human fMRI domain
+
+Using adversarial model comparison, not post hoc fitting
+
+
+What This Repository Does Not Claim
+
+It does not propose a universal law of brain dynamics
+
+It does not generalize to genetics, cosmology, or quantum systems
+
+It does not claim consciousness is explained or solved
+
+
+All conclusions are explicitly domain-limited and empirically constrained.
+
+
+---
+
+Summary of Findings
+
+Across an N = 8 subject sample, results show:
+
+Additive models are sufficient in primary sensory and motor networks
+
+Multiplicative interaction models provide a statistically superior explanation in:
+
+Default Mode Network
+
+Control Network
+
+Ventral Attention Network
+
+Limbic Network
+
+
+
+Phase-randomized controls confirm that the observed effects depend on the temporal structure of internal coherence, not merely its statistical properties.
+
+The strongest universality claim is falsified.
+A constrained structural advantage is supported in high-level associative networks.
+
+
+---
+
+Repository Contents
+
+├── README.md                # Project overview (this file)
+├── paper.md                 # Full academic paper (text-only, archival)
+├── environment.yml          # Exact computational environment
+├── run_adversarial_test.py  # Unified execution script
+
+
+---
+
+Reproducibility
+
+Environment
+
+All dependencies are specified in environment.yml.
+The analysis was designed to be reproducible using Conda:
+
+conda env create -f environment.yml
+conda activate utoe-neural-falsification
+
+Data
+
+The code is designed to operate on fMRIPrep derivatives from the OpenNeuro dataset:
+
+Dataset: ds003521
+
+Source: https://openneuro.org
+
+
+Due to size and licensing constraints, neuroimaging data are not included in this repository. File paths must be provided locally by the user.
+
+
+---
+
+Methods Overview
+
+Key methodological features include:
+
+Parcel-level analysis (Schaefer 400 atlas)
+
+Motion censoring and nuisance regression
+
+Sliding-window functional coherence estimation
+
+Parallelized computation of internal coherence
+
+Train/test split (70/30)
+
+Model comparison using:
+
+Adjusted R²
+
+AIC / BIC
+
+
+Phase-randomized null controls
+
+
+All analysis steps are explicitly defined in the paper and code.
+
+
+---
+
+Status
+
+✅ Completed and archived
+
+This repository reflects a finished experiment.
+Future work should proceed as separate, domain-specific repositories, not extensions of this one.
+
+
+---
+
+Citation
+
+A preprint version of this work is in preparation for arXiv submission.
+
+Once available, this section will be updated with the arXiv identifier.
+
+
+---
+
+Author
+
+Majid Shabani
+Independent Researcher
+
+
+---
+
+License
+
+This repository is released for academic inspection and reproduction.
+See license information in accordance with GitHub default terms unless otherwise specified.
+
+
+---
