@@ -1,46 +1,71 @@
-# UToE 2.1 — Neural Falsification Study
+# UToE – Neural Falsification Study
 
-This repository contains code, analysis pipelines, and manuscript sources
-for an adversarial empirical test of multiplicative versus additive neural
-integration dynamics.
+This repository contains the data pipeline, analysis code, and manuscript for an adversarial empirical test of multiplicative versus additive models of neural dynamics using fMRI data.
 
-The canonical scholarly archive for this work is hosted on the
-Open Science Framework (OSF).
+The study is explicitly **falsification-driven**. It does not assume that multiplicative (λ·γ) structure holds universally across the brain. Instead, it tests whether such structure is *necessary*, *redundant*, or *invalid* across distinct functional networks.
 
 ---
 
-## Published Record
+## Core Question
 
-**Structural Constraints on Multiplicative Neural Dynamics**  
-Majid Shabani (2025)
-
-OSF project (citable, timestamped):  
-https://osf.io/s6h7d
-
-This study performs a preregistered adversarial comparison between:
-- multiplicative interaction models
-- canonical additive drift models
-
-using human fMRI data, with explicit falsification criteria.
+Does a multiplicative interaction between external drive (λ) and internal coherence (γ) provide a statistically superior explanation of neural integration dynamics compared to additive or null alternatives?
 
 ---
 
-## Repository Contents
+## Experimental Design
+
+- Dataset: OpenNeuro ds003521 (fMRI, movie-watching task)
+- Parcellation: Schaefer 400, 7-network Yeo mapping
+- Models tested: M1–M12 (constant, additive, multiplicative, null, phase-randomized controls)
+- Evaluation metrics:
+  - Out-of-sample adjusted R²
+  - AIC / ΔAIC
+  - Phase-randomized null comparison
+
+The analysis is preregistered in structure: explicit failure criteria are defined *before* model comparison.
 
 ---
 
-## Scientific Position
+## Falsification Criteria
 
-This project **does not assume universality**.
+The multiplicative model is considered **falsified** in a network if:
 
-Results demonstrate:
-- failure of strong universality claims
-- partial structural necessity in associative neural systems
+- ΔAdj R² ≤ 0.01 **and**
+- ΔAIC ≥ −5
 
-This constraint-based outcome is treated as a *successful falsification*,
-not a weakness.
+These criteria ensure that small numerical improvements are not misinterpreted as structural necessity.
+
+---
+
+## Summary of Results
+
+- **Sensory and motor networks** (Visual, Somatomotor):  
+  Additive models are sufficient; multiplicative structure provides no meaningful advantage.
+
+- **Associative networks** (Default Mode, Control, Ventral Attention):  
+  Multiplicative models significantly outperform additive and phase-randomized controls.
+
+- **Null controls** eliminate the effect when temporal coherence is destroyed, confirming phase dependence.
+
+This result **constrains**, rather than universalizes, multiplicative neural dynamics.
+
+---
+
+## Contents
+
+- `paper.md` — Full manuscript with theory, methods, results, and limitations
+- `run_adversarial_test.py` — Complete analysis pipeline
+- `environment.yml` — Fully reproducible environment
+- `CITATION.cff` — Citation metadata
+
+---
+
+## Interpretation
+
+The study demonstrates that multiplicative neural dynamics are **not universal**, but **structurally necessary** in high-level integrative networks. This is the strongest defensible outcome of a falsification-based approach.
 
 ---
 
 ## License
+
 MIT License
