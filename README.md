@@ -1,71 +1,59 @@
 # UToE – Neural Falsification Study
 
-This repository contains the data pipeline, analysis code, and manuscript for an adversarial empirical test of multiplicative versus additive models of neural dynamics using fMRI data.
+This repository contains the paper, code, and reproducibility materials for an adversarial empirical test of multiplicative versus additive neural dynamics in resting-state fMRI.
 
-The study is explicitly **falsification-driven**. It does not assume that multiplicative (λ·γ) structure holds universally across the brain. Instead, it tests whether such structure is *necessary*, *redundant*, or *invalid* across distinct functional networks.
+The central question is structural:
 
----
+> When modelling neural signal change as a function of external drive (λ) and internal coherence (γ), is a multiplicative interaction term λ·γ structurally necessary, or are simpler additive drift models sufficient?
 
-## Core Question
-
-Does a multiplicative interaction between external drive (λ) and internal coherence (γ) provide a statistically superior explanation of neural integration dynamics compared to additive or null alternatives?
-
----
-
-## Experimental Design
-
-- Dataset: OpenNeuro ds003521 (fMRI, movie-watching task)
-- Parcellation: Schaefer 400, 7-network Yeo mapping
-- Models tested: M1–M12 (constant, additive, multiplicative, null, phase-randomized controls)
-- Evaluation metrics:
-  - Out-of-sample adjusted R²
-  - AIC / ΔAIC
-  - Phase-randomized null comparison
-
-The analysis is preregistered in structure: explicit failure criteria are defined *before* model comparison.
-
----
-
-## Falsification Criteria
-
-The multiplicative model is considered **falsified** in a network if:
-
-- ΔAdj R² ≤ 0.01 **and**
-- ΔAIC ≥ −5
-
-These criteria ensure that small numerical improvements are not misinterpreted as structural necessity.
-
----
-
-## Summary of Results
-
-- **Sensory and motor networks** (Visual, Somatomotor):  
-  Additive models are sufficient; multiplicative structure provides no meaningful advantage.
-
-- **Associative networks** (Default Mode, Control, Ventral Attention):  
-  Multiplicative models significantly outperform additive and phase-randomized controls.
-
-- **Null controls** eliminate the effect when temporal coherence is destroyed, confirming phase dependence.
-
-This result **constrains**, rather than universalizes, multiplicative neural dynamics.
+No universality is assumed. The study is restricted to the OpenNeuro ds003521 dataset and to predefined cortical networks.
 
 ---
 
 ## Contents
 
-- `paper.md` — Full manuscript with theory, methods, results, and limitations
-- `run_adversarial_test.py` — Complete analysis pipeline
-- `environment.yml` — Fully reproducible environment
-- `CITATION.cff` — Citation metadata
+- `paper.md`  
+  Full manuscript for the study, from abstract through conclusion.
+
+- `run_adversarial_test.py`  
+  Unified analysis script implementing models M1–M12, model comparison, and the final composite results across subjects and networks.
+
+- `environment.yml`  
+  Conda environment specification listing all required Python packages (NumPy, SciPy, Nilearn, Nibabel, etc.).
+
+- `LICENSE`  
+  MIT license for code and text in this repository.
+
+- `CITATION.cff`  
+  Machine-readable citation metadata.
 
 ---
 
-## Interpretation
+## Summary of the Study
 
-The study demonstrates that multiplicative neural dynamics are **not universal**, but **structurally necessary** in high-level integrative networks. This is the strongest defensible outcome of a falsification-based approach.
+- **Data**  
+  Resting-state fMRI from 8 healthy participants (OpenNeuro ds003521), parcellated into 7 Yeo–Schaefer functional networks.
+
+- **Models**  
+  - Additive drift model: rate ∝ λ + γ  
+  - Multiplicative model: rate ∝ λ·γ  
+  along with nested control models and a phase-randomized null.
+
+- **Primary test**  
+  Compare multiplicative model (M6) vs additive drift (M7) using ΔAIC and Δ adjusted R², per network and subject.
+
+- **Key result**  
+  - Sensory networks (Visual, SomatoMotor): additive drift is sufficient.  
+  - Associative networks (Limbic, Ventral Attention, Control, DMN): multiplicative structure is statistically necessary and robust to phase randomization.
+
+The conclusion is a **structural constraint**: the λ·γ product is not universal across cortex but is required in specific high-integration regimes.
 
 ---
 
-## License
+## How to Reproduce the Analysis
 
-MIT License
+1. **Create environment**
+
+   ```bash
+   conda env create -f environment.yml
+   conda activate utoe-neural
